@@ -5,7 +5,9 @@ import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import pages.*;
+
 import java.util.Map;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static support.TestContext.*;
 
@@ -54,7 +56,16 @@ public class AsuStepDefs {
     @And("I select   program in first step")
     public void iSelectProgramInFirstStep() {
         form.chooseProgramRequired(rfiInfo);
+    }
 
+    @And("I select  degree,  area  in first step")
+    public void iSelectDegreeAreaInFirstStep() {
+        form.chooseProgramReqFieldError(rfiInfo);
+    }
+
+    @Then("I verify that required field error is displayed")
+    public void iVerifyThatRequiredFieldErrorIsDisplayed() {
+        form.isErrorMessageDisplayed();
     }
 }
 

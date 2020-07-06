@@ -1,6 +1,7 @@
 degree: Graduate
 area: Computer science and technology
 program: Computer Science (MCS)
+programError: Select a program
 first name: embtest
 last name: brommer
 email: embtest@example.com

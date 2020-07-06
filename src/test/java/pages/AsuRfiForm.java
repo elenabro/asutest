@@ -1,5 +1,6 @@
 package pages;
 
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
@@ -37,6 +38,9 @@ public class AsuRfiForm extends Page {
     @FindBy(xpath = "//button[@type = 'submit']")
     private WebElement submitButton;
 
+    @FindBy(xpath = "//div[@id='programs-group']//div[contains(text(),'This is a required field.')]")
+    private WebElement errorMessage;
+
 
     public void chooseProgram(Map<String, String> rfiFormInfo) {
         degreeTypeField.click();
@@ -70,6 +74,27 @@ public class AsuRfiForm extends Page {
         new Select(programField).selectByVisibleText(rfiFormInfo.get("program"));
 
         continueButton.click();
+    }
+
+    public void chooseProgramReqFieldError(Map<String, String> rfiFormInfo) {
+        degreeTypeField.click();
+        new Select(degreeTypeField).selectByValue(rfiFormInfo.get("degree"));
+
+        interestAreaField.click();
+        new Select(interestAreaField).selectByValue(rfiFormInfo.get("area"));
+
+        programField.click();
+        scrollTo(programField);
+        new Select(programField).selectByVisibleText(rfiFormInfo.get("program"));
+        new Select(programField).selectByVisibleText(rfiFormInfo.get("programError"));
+    }
+
+    public boolean isErrorMessageDisplayed() {
+        try {
+            return errorMessage.isDisplayed();
+        } catch (NoSuchElementException e) {
+            return false;
+        }
     }
 }
 
