@@ -3,7 +3,9 @@ package pages;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
+
 import java.util.Map;
+
 import static support.TestContext.*;
 
 public class AsuRfiForm extends Page {
@@ -36,7 +38,7 @@ public class AsuRfiForm extends Page {
     private WebElement submitButton;
 
 
-    public void chooseProgram(Map<String, String> rfiFormInfo)  {
+    public void chooseProgram(Map<String, String> rfiFormInfo) {
         degreeTypeField.click();
         new Select(degreeTypeField).selectByValue(rfiFormInfo.get("degree"));
 
@@ -57,9 +59,17 @@ public class AsuRfiForm extends Page {
         phone.sendKeys(rfiForm.get("phone"));
     }
 
-    public void submitForm(){
+    public void submitForm() {
         getActions().moveToElement(submitButton).perform();
         click(submitButton);
+    }
+
+    public void chooseProgramRequired(Map<String, String> rfiFormInfo) {
+        programField.click();
+        scrollTo(programField);
+        new Select(programField).selectByVisibleText(rfiFormInfo.get("program"));
+
+        continueButton.click();
     }
 }
 

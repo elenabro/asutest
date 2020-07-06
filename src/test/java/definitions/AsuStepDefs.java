@@ -50,5 +50,11 @@ public class AsuStepDefs {
         boolean isDisplayed = page.isGreetingsDisplayed();
         assertThat(isDisplayed).isTrue();
     }
+
+    @And("I select   program in first step")
+    public void iSelectProgramInFirstStep() {
+        form.chooseProgramRequired(rfiInfo);
+
+    }
 }
 

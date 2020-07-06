@@ -9,3 +9,12 @@
       And i fill out fields in second step
       And I submit RFI form
       Then I verify that Thank you page is displayed
+
+      @asu2
+      Scenario: RFI form required field
+        Given I open the "asu" page
+        When I go to "Request Info" form
+        And I select   program in first step
+        And i fill out fields in second step
+        And I submit RFI form
+        Then I verify that Thank you page is displayed
